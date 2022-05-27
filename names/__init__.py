@@ -19,7 +19,9 @@ FILES = {
 }
 
 
-def get_name(filename):
+def get_name(filename, seed=None):
+    if seed is not None:
+        random.seed(seed)
     selected = random.random() * 90
     with open(filename) as name_file:
         for line in name_file:
@@ -29,17 +31,23 @@ def get_name(filename):
     return ""  # Return empty string if file is empty
 
 
-def get_first_name(gender=None):
+def get_first_name(gender=None, seed=None):
+    if seed is not None:
+        random.seed(seed)
     if gender is None:
         gender = random.choice(('male', 'female'))
     if gender not in ('male', 'female'):
         raise ValueError("Only 'male' and 'female' are supported as gender")
-    return get_name(FILES['first:%s' % gender]).capitalize()
+    return get_name(FILES['first:%s' % gender], seed=seed).capitalize()
 
 
-def get_last_name():
-    return get_name(FILES['last']).capitalize()
+def get_last_name(seed=None):
+    if seed is not None:
+        random.seed(seed)
+    return get_name(FILES['last'], seed=seed).capitalize()
 
 
-def get_full_name(gender=None):
-    return "{0} {1}".format(get_first_name(gender), get_last_name())
+def get_full_name(gender=None, seed=None):
+    if seed is not None:
+        random.seed(seed)
+    return "{0} {1}".format(get_first_name(gender, seed), get_last_name(seed))
