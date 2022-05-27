@@ -12,6 +12,9 @@ names
 
 Random name generator
 
+Code extends "names" implementation by adding optional random seed to recreate a series.
+
+
 
 Installation
 ------------
@@ -42,7 +45,11 @@ Here are examples of all current features:
 .. code-block:: pycon
 
     >>> import names
-    >>> names.get_full_name()
+    >>> names.get_full_name(seed=32);
+    u'Robert Harris'
+    >>> names.get_full_name(seed=32);
+    u'Robert Harris'
+    >>> names.get_full_name(gender='male')
     u'Patricia Halford'
     >>> names.get_full_name(gender='male')
     u'Patrick Keating'
